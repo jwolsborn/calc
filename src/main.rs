@@ -1,3 +1,45 @@
+#[cfg(test)]
+mod tests {
+	
+	use super::*;
+
+	#[test]	
+	fn test_sum(){
+		let mut int_args: Vec<i64> = Vec::with_capacity(3);
+		int_args.push(3);
+		int_args.push(2);
+		int_args.push(1);
+		assert_eq!(sum(int_args), 6);
+	}
+
+	#[test]
+	fn test_prod(){
+		let mut int_args: Vec<i64> = Vec::with_capacity(3);
+		int_args.push(3);
+		int_args.push(2);
+		int_args.push(4);
+		assert_eq!(product(int_args),24);
+	}
+
+	#[test]
+	fn test_gcd(){
+		let mut int_args: Vec<i64> = Vec::with_capacity(3);
+		int_args.push(70);
+		int_args.push(49);
+		assert_eq!(gcd(&mut int_args),7);
+	}
+
+	#[test]
+	fn test_lcm(){
+		let mut int_args: Vec<i64> = Vec::with_capacity(3);
+		int_args.push(10);
+		int_args.push(5);
+		int_args.push(65);
+		assert_eq!(lcm(&mut int_args),130);
+	}
+	
+}
+
 use std::env;
 use std::convert::AsRef;
 
@@ -20,7 +62,7 @@ fn main() {
     }
 	    
     match args[1].as_ref(){
-		"sum" => sum(int_args),
+		"sum" => println!("{}",sum(int_args)),
 		"product" => println!("{}",product(int_args)),
 		"gcd" => {
 					let mut div:i64 = 0;
@@ -34,12 +76,12 @@ fn main() {
     }	 
 }
 
-fn sum(int_args: Vec<i64>) {
+fn sum(int_args: Vec<i64>) -> i64{
 	let mut sum:i64 = 0;
 	for i in 0..int_args.len(){
 		sum = sum + int_args[i]
 	}
-	println!("{}",sum);
+	sum
 }
 
 fn product(int_args: Vec<i64>) -> i64{
